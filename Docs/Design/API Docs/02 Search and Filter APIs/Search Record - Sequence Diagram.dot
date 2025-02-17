@@ -1,0 +1,16 @@
+digraph SearchRecordSequence {
+    rankdir=LR;
+    node [shape=rect, fontname="Arial"];
+
+    Client [label="Client (Frontend)"];
+    APIGateway [label="API Gateway"];
+    RecordService [label="Record Management Service"];
+    Database [label="Database"];
+
+    Client -> APIGateway [label="GET /records/search?filters"];
+    APIGateway -> RecordService [label="Forward request with filters"];
+    RecordService -> Database [label="Query with filters"];
+    Database -> RecordService [label="Return filtered results"];
+    RecordService -> APIGateway [label="Send results"];
+    APIGateway -> Client [label="Return results"];
+}

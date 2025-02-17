@@ -1,0 +1,17 @@
+digraph UpdateRecord {
+    rankdir=LR;
+    node [shape=rect];
+
+    User -> API_Gateway [label="PUT /records/{id}"];
+    API_Gateway -> Auth_Service [label="Validate JWT"];
+    Auth_Service -> API_Gateway [label="JWT Valid / Invalid"];
+    API_Gateway -> Record_Service [label="PUT /records/{id}"];
+    Record_Service -> Validation_Module [label="Validate input"];
+    Validation_Module -> Record_Service [label="Validation result"];
+    Record_Service -> Database [label="Update record in DB"];
+    Database -> Record_Service [label="Update success/failure"];
+    Record_Service -> Audit_Service [label="Log update operation"];
+    Audit_Service -> Record_Service [label="Log success/failure"];
+    Record_Service -> API_Gateway [label="Response (success/failure)"];
+    API_Gateway -> User [label="Response (200 OK / 400 Error)"];
+}

@@ -1,0 +1,15 @@
+digraph DeleteRecord {
+    rankdir=LR;
+    node [shape=rectangle];
+
+    User -> APIGateway [label="Request DELETE /records/{id}"];
+    APIGateway -> AuthService [label="Validate JWT Token"];
+    AuthService -> APIGateway [label="Authentication Success/Failure"];
+    APIGateway -> RecordService [label="DELETE /records/{id}"];
+    RecordService -> Database [label="Soft delete record by ID"];
+    Database -> RecordService [label="Acknowledgement"];
+    RecordService -> AuditService [label="Log deletion event"];
+    AuditService -> RecordService [label="Audit log saved"];
+    RecordService -> APIGateway [label="Deletion Response"];
+    APIGateway -> User [label="HTTP Response"];
+}

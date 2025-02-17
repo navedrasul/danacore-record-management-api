@@ -1,0 +1,15 @@
+digraph ERDiagram {
+    rankdir=TB;
+    node [shape=record, fontname=Arial];
+
+    // Entity Nodes
+    Customer [label="{Customer|+ id: BIGINT\l+ name: VARCHAR(255)\l+ email: VARCHAR(255)\l+ created_at: TIMESTAMP\l+ updated_at: TIMESTAMP\l}"];
+    Employee [label="{Employee|+ id: BIGINT\l+ name: VARCHAR(255)\l+ designation: VARCHAR(255)\l+ department: VARCHAR(255)\l+ created_at: TIMESTAMP\l+ updated_at: TIMESTAMP\l}"];
+    Inventory [label="{Inventory|+ id: BIGINT\l+ product_name: VARCHAR(255)\l+ stock_quantity: INT\l+ created_at: TIMESTAMP\l+ updated_at: TIMESTAMP\l}"];
+    AuditTrail [label="{AuditTrail|+ id: BIGINT\l+ entity_id: BIGINT\l+ entity_type: VARCHAR(255)\l+ operation: VARCHAR(255)\l+ timestamp: TIMESTAMP\l+ details: TEXT\l}"];
+
+    // Relationships
+    Customer -> AuditTrail [label="1-to-Many"];
+    Employee -> AuditTrail [label="1-to-Many"];
+    Inventory -> AuditTrail [label="1-to-Many"];
+}

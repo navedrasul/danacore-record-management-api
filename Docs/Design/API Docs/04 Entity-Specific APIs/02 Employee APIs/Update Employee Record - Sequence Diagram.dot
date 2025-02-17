@@ -1,0 +1,19 @@
+digraph UpdateEmployeeRecord {
+    rankdir=LR;
+    node [shape=rect, fontname=Arial];
+
+    User -> Frontend [label="1. Fills and submits update form"];
+    Frontend -> APIGateway [label="2. Sends HTTP PUT /employees/{id} request"];
+    APIGateway -> AuthService [label="3. Validates JWT Token"];
+    AuthService -> APIGateway [label="4. Returns authentication status"];
+    APIGateway -> Backend [label="5. Routes authenticated request to Backend"];
+    Backend -> ServiceLayer [label="6. Processes business logic for updating employee"];
+    ServiceLayer -> RepositoryLayer [label="7. Updates employee data in database"];
+    RepositoryLayer -> Database [label="8. Executes SQL update"];
+    Database -> RepositoryLayer [label="9. Returns update success"];
+    RepositoryLayer -> ServiceLayer [label="10. Sends confirmation"];
+    ServiceLayer -> Backend [label="11. Returns response"];
+    Backend -> APIGateway [label="12. Forwards response"];
+    APIGateway -> Frontend [label="13. Sends response to client"];
+    Frontend -> User [label="14. Displays success message"];
+}

@@ -1,0 +1,15 @@
+digraph GetAllAuditTrails {
+    rankdir=LR;
+    node [shape=rect];
+
+    User -> "API Gateway" [label="GET /records/audit"];
+    "API Gateway" -> "Audit Controller" [label="Validate JWT and Forward Request"];
+    "Audit Controller" -> "Audit Service" [label="Process Request"];
+    "Audit Service" -> "Audit Repository" [label="Fetch Audit Trail Data"];
+    "Audit Repository" -> "Database" [label="Execute Query"];
+    "Database" -> "Audit Repository" [label="Return Audit Data"];
+    "Audit Repository" -> "Audit Service" [label="Return Processed Data"];
+    "Audit Service" -> "Audit Controller" [label="Return Response"];
+    "Audit Controller" -> "API Gateway" [label="Send Response"];
+    "API Gateway" -> User [label="Return Audit Trails"];
+}

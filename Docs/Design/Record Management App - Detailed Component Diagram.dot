@@ -1,0 +1,140 @@
+digraph RecordManagementApp {
+    rankdir=TB;
+    node [shape=component, style=rounded];
+
+    subgraph cluster_DanaCore {
+        label="DanaCore";
+        style = filled;
+        color = lightblue;
+
+        subgraph cluster_RecordManagementApp {
+            label = "Record Management App";
+            style = filled;
+            color = lightgrey;
+
+            frontend [label="Frontend (React)"];
+            backend [label="Backend (Spring Boot)"];
+            auth_service [label="Authentication Service"];
+            audit_trail_service [label="Audit Trail Service"];
+            search_service [label="Search Service"];
+            customer_service [label="Customer Service"];
+            employee_service [label="Employee Service"];
+            inventory_service [label="Inventory Service"];
+            record_service [label="Record Service"];
+            entity_api_gateway [label="Entity API Gateway"];
+            data_aggregation_service [label="Data Aggregation Service"];
+
+            customer_repository [label="Customer Repository"];
+            employee_repository [label="Employee Repository"];
+            inventory_repository [label="Inventory Repository"];
+            audit_trail_repository [label="Audit Trail Repository"];
+            aggregated_data_repository [label="Aggregated Data Repository"];
+            
+            customer_db [label="Customer Database"];
+            employee_db [label="Employee Database"];
+            inventory_db [label="Inventory Database"];
+            audit_trail_db [label="Audit Database"];
+            aggregated_data_db [label="Aggregated Data Database"];
+
+
+            frontend -> backend [label="API Requests"];
+            backend -> frontend [label="REST API Responses"];
+
+            backend -> auth_service [label="Authentication Requests"];
+            auth_service -> backend [label="Authentication Responses"];
+
+            backend -> record_service [label="Record Management Requests"];
+            record_service -> backend [label="Record Management Responses"];
+            record_service -> customer_service [label="Customer Record Requests"];
+            customer_service -> record_service [label="Customer Record Responses"];
+            record_service -> employee_service [label="Employee Record Requests"];
+            employee_service -> record_service [label="Employee Record Responses"];
+            record_service -> inventory_service [label="Inventory Record Requests"];
+            inventory_service -> record_service [label="Inventory Record Responses"];
+            record_service -> audit_trail_service [label="Audit Trail Logging Requests"];
+
+            backend -> search_service [label="Search Requests"];
+            search_service -> backend [label="Search Responses"];
+
+            search_service -> entity_api_gateway [label="Search Requests"];
+            entity_api_gateway -> search_service [label="Search Responses"];
+
+            entity_api_gateway -> customer_service [label="Customer API Requests"];
+            customer_service -> entity_api_gateway [label="Customer API Responses"];
+            entity_api_gateway -> employee_service [label="Employee API Requests"];
+            employee_service -> entity_api_gateway [label="Employee API Responses"];
+            entity_api_gateway -> inventory_service [label="Inventory API Requests"];
+            inventory_service -> entity_api_gateway [label="Inventory API Responses"];
+
+            customer_service -> data_aggregation_service [label="Customer Data Events"];
+            employee_service -> data_aggregation_service [label="Employee Data Events"];
+            inventory_service -> data_aggregation_service [label="Inventory Data Events"];
+
+            backend -> audit_trail_service [label="Audit Trail Data Requests"];
+            audit_trail_service -> backend [label="Audit Trail Data Responses"];
+
+
+            search_service -> data_aggregation_service [label="Aggregated Data Lookup Requests"];
+            data_aggregation_service -> search_service [label="Aggregated Data Lookup Responses"];
+            search_service -> search_service_cache [label="Search Cache Requests"];
+            search_service_cache -> search_service [label="Search Cache Responses"];
+
+            audit_trail_service -> audit_trail_repository [label="Data Access Requests"];
+            audit_trail_repository -> audit_trail_service [label="Data Access Responses"];
+            audit_trail_repository -> audit_trail_db [label="DB CRUD Requests"];
+            audit_trail_db -> audit_trail_repository [label="DB CRUD Responses"];
+
+            customer_service -> customer_repository [label="Data Access Requests"];
+            customer_repository -> customer_service [label="Data Access Responses"];
+            customer_repository -> customer_db [label="DB CRUD Requests"];
+            customer_db -> customer_repository [label="DB CRUD Responses"];
+
+            employee_service -> employee_repository [label="Data Access Requests"];
+            employee_repository -> employee_service [label="Data Access Responses"];
+            employee_repository -> employee_db [label="DB CRUD Requests"];
+            employee_db -> employee_repository [label="DB CRUD Responses"];
+
+            inventory_service -> inventory_repository [label="Data Access Requests"];
+            inventory_repository -> inventory_service [label="Data Access Responses"];
+            inventory_repository -> inventory_db [label="DB CRUD Requests"];
+            inventory_db -> inventory_repository [label="DB CRUD Responses"];
+
+            data_aggregation_service -> aggregated_data_repository [label="Data Access Requests"];
+            aggregated_data_repository -> data_aggregation_service [label="Data Access Responses"];
+            aggregated_data_repository -> aggregated_data_db [label="DB CRUD Requests"];
+            aggregated_data_db -> aggregated_data_repository [label="DB CRUD Responses"];
+        }
+
+        // Interactions with other apps in DanaCore ERP System
+        backend -> config_mgmt_app [label="Configuration Management Requests"];
+        config_mgmt_app -> backend [label="Configuration Management Responses"];
+        backend -> monitoring_alerts_app [label="Monitoring & Alerts Requests"];
+        monitoring_alerts_app -> backend [label="Monitoring & Alerts Responses"];
+        backend -> user_access_mgmt_app [label="User Access Management Requests"];
+        user_access_mgmt_app -> backend [label="User Access Management Responses"];
+        backend -> reporting_app [label="Reporting Requests"];
+        reporting_app -> backend [label="Reporting Responses"];
+        backend -> predictive_analytics_app [label="Predictive Analytics Requests"];
+        predictive_analytics_app -> backend [label="Predictive Analytics Responses"];
+        backend -> bi_app [label="Business Intelligence Requests"];
+        bi_app -> backend [label="Business Intelligence Responses"];
+        backend -> payment_gateway_integration_app [label="Payment Gateway Integration Requests"];
+        payment_gateway_integration_app -> backend [label="Payment Gateway Integration Responses"];
+        backend -> crm_integration_app [label="CRM Integration Requests"];
+        crm_integration_app -> backend [label="CRM Integration Responses"];
+        backend -> api_mgmt_app [label="API Management Requests"];
+        api_mgmt_app -> backend [label="API Management Responses"];
+        backend -> email_sms_app [label="Email & SMS Requests"];
+        email_sms_app -> backend [label="Email & SMS Responses"];
+        backend -> task_notification_app [label="Task Notification Requests"];
+        task_notification_app -> backend [label="Task Notification Responses"];
+        backend -> collaboration_app [label="Collaboration Requests"];
+        collaboration_app -> backend [label="Collaboration Responses"];
+        backend -> job_scheduler_app [label="Job Scheduler Requests"];
+        job_scheduler_app -> backend [label="Job Scheduler Responses"];
+        backend -> event_processing_app [label="Event Processing Requests"];
+        event_processing_app -> backend [label="Event Processing Responses"];
+        backend -> audit_trail_app [label="Audit Trail Requests"];
+        audit_trail_app -> backend [label="Audit Trail Responses"];
+    }
+}

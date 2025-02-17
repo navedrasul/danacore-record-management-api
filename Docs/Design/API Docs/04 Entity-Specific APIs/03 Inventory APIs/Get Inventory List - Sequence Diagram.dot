@@ -1,0 +1,19 @@
+digraph GetInventoryList {
+    rankdir=LR;
+    node [shape=record, fontname=Arial];
+
+    User -> Frontend [label="1. Sends HTTP GET /inventory request"];
+    Frontend -> APIGateway [label="2. Forwards request via API Gateway"];
+    APIGateway -> AuthService [label="3. Validates JWT Token"];
+    AuthService -> APIGateway [label="4. Returns authentication status"];
+    APIGateway -> Backend [label="5. Routes authenticated request to Backend"];
+    Backend -> ServiceLayer [label="6. Processes business logic for fetching inventory"];
+    ServiceLayer -> RepositoryLayer [label="7. Queries the database"];
+    RepositoryLayer -> Database [label="8. Executes SQL query"];
+    Database -> RepositoryLayer [label="9. Returns query results"];
+    RepositoryLayer -> ServiceLayer [label="10. Sends processed data"];
+    ServiceLayer -> Backend [label="11. Returns response"];
+    Backend -> APIGateway [label="12. Forwards response"];
+    APIGateway -> Frontend [label="13. Sends response to client"];
+    Frontend -> User [label="14. Displays inventory list"];
+}

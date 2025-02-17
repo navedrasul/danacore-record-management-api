@@ -1,0 +1,16 @@
+digraph FilterRecordsByType {
+    rankdir=LR;
+    node [shape=rectangle];
+
+    User [label="User"];
+    APIGateway [label="API Gateway"];
+    RecordService [label="Record Service"];
+    Database [label="Database"];
+
+    User -> APIGateway [label="GET /records/{type}/filter"];
+    APIGateway -> RecordService [label="Forward Request"];
+    RecordService -> Database [label="Query Records by Type"];
+    Database -> RecordService [label="Return Filtered Records"];
+    RecordService -> APIGateway [label="Send Filtered Records"];
+    APIGateway -> User [label="Respond with Filtered Records"];
+}

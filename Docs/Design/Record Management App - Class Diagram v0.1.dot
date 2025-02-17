@@ -1,0 +1,33 @@
+digraph RecordManagementAppClasses {
+    rankdir=TB;
+    node [shape=record, fontname=Arial];
+
+    // Entity Classes
+    Customer [label="{Customer|+ id: Long\l+ name: String\l+ email: String\l+ createdAt: Date\l+ updatedAt: Date\l}"];
+    Employee [label="{Employee|+ id: Long\l+ name: String\l+ designation: String\l+ department: String\l+ createdAt: Date\l+ updatedAt: Date\l}"];
+    Inventory [label="{Inventory|+ id: Long\l+ productName: String\l+ stockQuantity: Integer\l+ createdAt: Date\l+ updatedAt: Date\l}"];
+    AuditTrail [label="{AuditTrail|+ id: Long\l+ entityId: Long\l+ entityType: String\l+ operation: String\l+ timestamp: Date\l+ details: String\l}"];
+
+    // Service Classes
+    CustomerService [label="{CustomerService|+ createCustomer(Customer): Customer\l+ getCustomerById(Long): Customer\l+ updateCustomer(Long, Customer): Customer\l+ deleteCustomer(Long): void\l}"];
+    EmployeeService [label="{EmployeeService|+ createEmployee(Employee): Employee\l+ getEmployeeById(Long): Employee\l+ updateEmployee(Long, Employee): Employee\l+ deleteEmployee(Long): void\l}"];
+    InventoryService [label="{InventoryService|+ createInventory(Inventory): Inventory\l+ getInventoryById(Long): Inventory\l+ updateInventory(Long, Inventory): Inventory\l+ deleteInventory(Long): void\l}"];
+    AuditTrailService [label="{AuditTrailService|+ getAuditTrailById(Long): AuditTrail\l+ getAllAuditTrails(): List<AuditTrail>\l}"];
+
+    // Repository Classes
+    CustomerRepository [label="{CustomerRepository|+ save(Customer): Customer\l+ findById(Long): Customer\l+ deleteById(Long): void\l}"];
+    EmployeeRepository [label="{EmployeeRepository|+ save(Employee): Employee\l+ findById(Long): Employee\l+ deleteById(Long): void\l}"];
+    InventoryRepository [label="{InventoryRepository|+ save(Inventory): Inventory\l+ findById(Long): Inventory\l+ deleteById(Long): void\l}"];
+    AuditTrailRepository [label="{AuditTrailRepository|+ save(AuditTrail): AuditTrail\l+ findById(Long): AuditTrail\l+ findAll(): List<AuditTrail>\l}"];
+
+    // Relationships
+    CustomerService -> CustomerRepository [label="uses"];
+    EmployeeService -> EmployeeRepository [label="uses"];
+    InventoryService -> InventoryRepository [label="uses"];
+    AuditTrailService -> AuditTrailRepository [label="uses"];
+
+    CustomerRepository -> Customer [label="manages"];
+    EmployeeRepository -> Employee [label="manages"];
+    InventoryRepository -> Inventory [label="manages"];
+    AuditTrailRepository -> AuditTrail [label="manages"];
+}

@@ -1,0 +1,26 @@
+digraph SequenceDiagram {
+    rankdir=LR;
+    node [shape=box];
+
+    User [label="User"];
+    APIGateway [label="API Gateway"];
+    RecordService [label="Record Management Service"];
+    Controller [label="Controller Layer"];
+    ServiceLayer [label="Service Layer"];
+    Repository [label="Repository Layer"];
+    Database [label="Database"];
+
+    User -> APIGateway [label="GET /records/{id}"];
+    APIGateway -> APIGateway [label="Authenticate & Authorize (JWT)"];
+    APIGateway -> RecordService [label="Forward Request"];
+    RecordService -> Controller [label="Handle Request"];
+    Controller -> ServiceLayer [label="Get Record by ID"];
+    ServiceLayer -> Repository [label="Query Record"];
+    Repository -> Database [label="SELECT * FROM records WHERE id = ?"];
+    Database -> Repository [label="Record Data"];
+    Repository -> ServiceLayer [label="Return Record"];
+    ServiceLayer -> Controller [label="Return Response"];
+    Controller -> RecordService [label="Response"];
+    RecordService -> APIGateway [label="Return Response"];
+    APIGateway -> User [label="Record Data (Response)"];
+}

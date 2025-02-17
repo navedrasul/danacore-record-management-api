@@ -1,0 +1,19 @@
+digraph GetRecordAuditTrail {
+    rankdir=LR;
+    node [shape=box, style=rounded];
+
+    client [label="Client"];
+    api_gateway [label="API Gateway"];
+    auth_service [label="Authentication Service"];
+    record_service [label="Record Management Service"];
+    audit_db [label="Audit Database"];
+
+    client -> api_gateway [label="GET /records/audit/{id}"];
+    api_gateway -> auth_service [label="Validate JWT"];
+    auth_service -> api_gateway [label="JWT Valid"];
+    api_gateway -> record_service [label="GET /audit/{id}"];
+    record_service -> audit_db [label="Query Audit Data"];
+    audit_db -> record_service [label="Audit Data"];
+    record_service -> api_gateway [label="Response (Audit Trail)"];
+    api_gateway -> client [label="Response (Audit Trail)"];
+}

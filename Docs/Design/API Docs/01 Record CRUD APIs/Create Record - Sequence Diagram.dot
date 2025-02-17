@@ -1,0 +1,25 @@
+digraph G {
+  rankdir=LR;
+  node [shape=rectangle, style=filled, fillcolor=lightblue];
+
+  User [label="User (Frontend)"];
+  Frontend [label="Frontend (React App)"];
+  APIGateway [label="API Gateway"];
+  Controller [label="RecordController (Spring Boot)"];
+  Service [label="RecordService (Spring Boot)"];
+  Repository [label="RecordRepository (Hibernate/JPA)"];
+  Database [label="Database"];
+
+  User -> Frontend [label="Fill and Submit Record Form"];
+  Frontend -> APIGateway [label="POST /records"];
+  APIGateway -> Controller [label="POST /records"];
+  Controller -> Service [label="Validate Request"];
+  Service -> Repository [label="Save Record to Database"];
+  Repository -> Database [label="Insert Query"];
+  Database -> Repository [label="Success"];
+  Repository -> Service [label="Saved Entity"];
+  Service -> Controller [label="Response with Created Record"];
+  Controller -> APIGateway [label="HTTP 201 (Created)"];
+  APIGateway -> Frontend [label="Response to User"];
+  Frontend -> User [label="Show Success Message"];
+}
