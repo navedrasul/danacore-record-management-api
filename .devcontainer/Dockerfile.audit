@@ -1,0 +1,13 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0
+
+WORKDIR /app
+
+# Copy audit service files
+COPY ["Services/AuditService", "./"]
+
+RUN dotnet restore
+RUN dotnet build -c Release -o /app/build
+
+EXPOSE 8080
+
+ENTRYPOINT ["dotnet", "build/AuditService.dll"]

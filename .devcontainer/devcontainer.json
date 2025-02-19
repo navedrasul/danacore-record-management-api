@@ -1,0 +1,149 @@
+{
+    "name": "Record Management App Development",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "api",
+    "workspaceFolder": "/workspace",
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "pivotal.vscode-spring-boot",
+                "vscjava.vscode-spring-initializr",
+                "redhat.vscode-xml",
+                "redhat.vscode-yaml",
+                "ms-azuretools.vscode-docker",
+                "eamodio.gitlens",
+                "github.copilot",
+                "streetsidesoftware.code-spell-checker",
+                "ms-dotnettools.csharp",
+                "ms-mssql.mssql",
+                "mtxr.sqltools",
+                "mtxr.sqltools-driver-pg",
+                "formulahendry.dotnet-test-explorer",
+                "fernandoescolar.vscode-solution-explorer",
+                "humao.rest-client",
+                "rangav.vscode-thunder-client",
+                "ckolkman.vscode-postgres",
+                "Dunn.redis-client"
+            ],
+            "settings": {
+                "java.configuration.updateBuildConfiguration": "automatic",
+                "java.compile.nullAnalysis.mode": "automatic",
+                "java.format.settings.url": ".vscode/java-formatter.xml",
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": true
+                },
+                "sqltools.connections": [
+                    {
+                        "name": "Customer DB",
+                        "driver": "PostgreSQL",
+                        "server": "localhost",
+                        "port": 5432,
+                        "database": "customer_db",
+                        "username": "customer_admin"
+                    },
+                    {
+                        "name": "Employee DB",
+                        "driver": "PostgreSQL",
+                        "server": "localhost",
+                        "port": 5433,
+                        "database": "employee_db",
+                        "username": "employee_admin"
+                    },
+                    {
+                        "name": "Audit DB",
+                        "driver": "PostgreSQL",
+                        "server": "localhost",
+                        "port": 5434,
+                        "database": "audit_db",
+                        "username": "audit_admin"
+                    },
+                    {
+                        "name": "Inventory DB",
+                        "driver": "PostgreSQL",
+                        "server": "localhost",
+                        "port": 5435,
+                        "database": "inventory_db",
+                        "username": "inventory_admin"
+                    },
+                    {
+                        "name": "Aggregated DB",
+                        "driver": "PostgreSQL",
+                        "server": "localhost",
+                        "port": 5436,
+                        "database": "aggregated_db",
+                        "username": "aggregated_admin"
+                    }
+                ],
+                "rest-client.environmentVariables": {
+                    "$shared": {
+                        "baseUrl": "http://localhost:8080",
+                        "customerServiceUrl": "http://localhost:8081",
+                        "employeeServiceUrl": "http://localhost:8082",
+                        "inventoryServiceUrl": "http://localhost:8083",
+                        "auditServiceUrl": "http://localhost:8084",
+                        "searchServiceUrl": "http://localhost:8085",
+                        "aggregationServiceUrl": "http://localhost:9090"
+                    }
+                }
+            }
+        }
+    },
+
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "21",
+            "installMaven": true,
+            "mavenVersion": "3.9.5"
+        },
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/dotnet:1": {
+            "version": "7.0"
+        },
+        "ghcr.io/devcontainers/features/redis:1": {
+            "version": "latest"
+        }
+    },
+
+    "forwardPorts": [
+        8080,    // Main API Gateway
+        8081,    // Customer Service
+        8082,    // Employee Service
+        8083,    // Inventory Service
+        8084,    // Audit Service
+        8085,    // Search Service
+        9090,    // Data Aggregation Service
+        5432,    // Customer DB
+        5433,    // Employee DB
+        5434,    // Audit DB
+        5435,    // Inventory DB
+        5436,    // Aggregated DB
+        6379     // Redis Cache
+    ],
+
+    "postCreateCommand": "dotnet restore && dotnet build",
+    "remoteUser": "vscode",
+
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.nuget,target=/home/vscode/.nuget,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ],
+
+    "runArgs": [
+        "--name=recordmanagementapp-dev",
+        "--network=record-mgmt-network"
+    ],
+
+    "remoteEnv": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CUSTOMER_SERVICE_URL": "http://localhost:8081",
+        "EMPLOYEE_SERVICE_URL": "http://localhost:8082",
+        "INVENTORY_SERVICE_URL": "http://localhost:8083",
+        "AUDIT_SERVICE_URL": "http://localhost:8084",
+        "SEARCH_SERVICE_URL": "http://localhost:8085",
+        "AGGREGATION_SERVICE_URL": "http://localhost:9090",
+        "REDIS_CONNECTION": "localhost:6379"
+    }
+}

@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    command: sleep infinity
+    networks:
+      - record-mgmt-network
+    depends_on:
+      - customer-db
+      - employee-db
+      - audit-service
+      - aggregated-repo
+
+  customer-db:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - customer-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: customerDb123!
+      POSTGRES_USER: customer_admin
+      POSTGRES_DB: customer_db
+    networks:
+      - record-mgmt-network
+    ports:
+      - "5432:5432"
+
+  employee-db:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - employee-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: employeeDb123!
+      POSTGRES_USER: employee_admin
+      POSTGRES_DB: employee_db
+    networks:
+      - record-mgmt-network
+    ports:
+      - "5433:5432"
+
+  audit-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.audit
+    depends_on:
+      - audit-db
+    networks:
+      - record-mgmt-network
+    ports:
+      - "8080:8080"
+
+  audit-db:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - audit-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: auditDb123!
+      POSTGRES_USER: audit_admin
+      POSTGRES_DB: audit_db
+    networks:
+      - record-mgmt-network
+    ports:
+      - "5434:5432"
+
+  aggregated-repo:
+    build:
+      context: .
+      dockerfile: Dockerfile.aggregated
+    networks:
+      - record-mgmt-network
+    volumes:
+      - aggregated-data:/data
+
+networks:
+  record-mgmt-network:
+    driver: bridge
+
+volumes:
+  customer-data:
+  employee-data:
+  audit-data:
+  aggregated-data:

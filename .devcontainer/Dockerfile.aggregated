@@ -1,0 +1,13 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0
+
+WORKDIR /app
+
+# Copy aggregated repository service files
+COPY ["Services/AggregatedRepository", "./"]
+
+RUN dotnet restore
+RUN dotnet build -c Release -o /app/build
+
+EXPOSE 9090
+
+ENTRYPOINT ["dotnet", "build/AggregatedRepository.dll"]
