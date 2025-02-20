@@ -1,0 +1,143 @@
+[12 ms] Dev Containers 0.397.0 in VS Code 1.97.2 (e54c774e0add60467559eb0d1e229c6452cf8447).
+[12 ms] Start: Resolving Remote
+[26 ms] Setting up container for folder or workspace: c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI\RecordManagementAppAPI.code-workspace
+[26 ms] Context: desktop-linux
+[28 ms] Start: Run: wsl -l -v
+[72 ms] Start: Run: wsl -d Ubuntu-22.04 -e /bin/sh -c echo ~
+[160 ms] Start: Run: wsl -d Ubuntu-22.04 -e /bin/sh -c cd '/home/nr' && /bin/sh
+[164 ms] Start: Run in host: id -un
+[210 ms] nr
+[210 ms] 
+[210 ms] Start: Run in host:  (command -v getent >/dev/null 2>&1 && getent passwd 'nr' || grep -E '^nr|^[^:]*:[^:]*:nr:' /etc/passwd || true)
+[213 ms] Start: Run in host: echo ~
+[213 ms] /home/nr
+[213 ms] 
+[214 ms] Start: Run in host: test -f '/home/nr/.vscode-server/cli/servers/Stable-e54c774e0add60467559eb0d1e229c6452cf8447/server/node'
+[215 ms] 
+[215 ms] 
+[215 ms] Exit code 1
+[215 ms] Start: Run in host: test -f '/home/nr/.vscode/cli/servers/Stable-e54c774e0add60467559eb0d1e229c6452cf8447/server/node'
+[216 ms] 
+[216 ms] 
+[216 ms] Exit code 1
+[216 ms] Start: Run in host: test -f '/home/nr/.vscode-server/bin/e54c774e0add60467559eb0d1e229c6452cf8447/node'
+[218 ms] 
+[218 ms] 
+[218 ms] Exit code 1
+[218 ms] Start: Run in host: test -f '/home/nr/.vscode-remote-containers/bin/e54c774e0add60467559eb0d1e229c6452cf8447/node'
+[220 ms] 
+[220 ms] 
+[220 ms] Exit code 1
+[220 ms] Start: Run in host: uname -s
+[221 ms] Linux
+[221 ms] 
+[221 ms] Start: Run in host: uname -m
+[222 ms] x86_64
+[222 ms] 
+[223 ms] Start: Run in host: (cat /etc/os-release || cat /usr/lib/os-release) 2>/dev/null
+[224 ms] PRETTY_NAME="Ubuntu 22.04.2 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.2 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+[224 ms] 
+[225 ms] Start: Downloading VS Code Server
+[225 ms] e54c774e0add60467559eb0d1e229c6452cf8447 linux-x64 stable
+[9685 ms] Start: Installing VS Code Server
+[9685 ms] Start: Run in host: mkdir -p /home/nr/.vscode-remote-containers/bin/e54c774e0add60467559eb0d1e229c6452cf8447_1740041625638
+[9698 ms] 
+[9698 ms] 
+[9698 ms] Start: Run in host: (dd iflag=fullblock bs=8192 count=12036; dd iflag=fullblock bs=4096 count=1) | tar --no-same-owner -x -C /home/nr/.vscode-remote-containers/bin/e54c774e0add60467559eb0d1e229c6452cf8447_1740041625638
+[10114 ms] 12036+0 records in
+12036+0 records out
+[10115 ms] 98598912 bytes (99 MB, 94 MiB) copied, 0.413032 s, 239 MB/s
+[10123 ms] 1+0 records in
+1+0 records out
+4096 bytes (4.1 kB, 4.0 KiB) copied, 0.0082705 s, 495 kB/s
+[10124 ms] 
+[10124 ms] 
+[10124 ms] Start: Run in host: mv -n /home/nr/.vscode-remote-containers/bin/e54c774e0add60467559eb0d1e229c6452cf8447_1740041625638/* /home/nr/.vscode-remote-containers/bin/e54c774e0add60467559eb0d1e229c6452cf8447 && rmdir /home/nr/.vscode-remote-containers/bin/e54c774e0add60467559eb0d1e229c6452cf8447_1740041625638
+[10129 ms] 
+[10129 ms] 
+[10129 ms] Start: Run in host: test -f '/home/nr/.vscode-remote-containers/dist/vscode-remote-containers-server-0.397.0.js'
+[10131 ms] 
+[10131 ms] 
+[10132 ms] userEnvProbe: loginInteractiveShell (default)
+[10132 ms] userEnvProbe: not found in cache
+[10133 ms] userEnvProbe shell: /bin/bash
+[10232 ms] userEnvProbe PATHs:
+Probe:     '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Microsoft MPI/Bin/:/mnt/c/Program Files/Oculus/Support/oculus-runtime:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/Microsoft SQL Server/150/Tools/Binn/:/mnt/c/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR:/Docker/host/bin:/mnt/c/Program Files/GitHub CLI/:/mnt/c/Users/naved/AppData/Local/Programs/Python/Python312/Scripts/:/mnt/c/Users/naved/AppData/Local/Programs/Python/Python312/:/mnt/c/Users/naved/.console-ninja/.bin:/mnt/c/Users/naved/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/naved/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/naved/.dotnet/tools:/mnt/c/Users/naved/AppData/Local/GitHubDesktop/bin:/mnt/c/Users/naved/.dotnet/tools:/mnt/c/Program Files/Graphviz/bin:/mnt/c/Users/naved/AppData/Local/Microsoft/WindowsApps:/snap/bin'
+Container: None
+[10240 ms] Start: Run in Host: wslpath -w /run/user/1000/wayland-0
+[10246 ms] Start: Check Docker is running
+[10246 ms] Start: Run: docker version
+[10315 ms] Client:
+ Version:           27.5.1
+ API version:       1.47
+ Go version:        go1.22.11
+ Git commit:        9f9e405
+ Built:             Wed Jan 22 13:41:44 2025
+ OS/Arch:           windows/amd64
+ Context:           desktop-linux
+
+Server: Docker Desktop 4.38.0 (181591)
+ Engine:
+[10315 ms]   Version:          27.5.1
+  API version:      1.47 (minimum version 1.24)
+  Go version:       go1.22.11
+  Git commit:       4c9b3b0
+  Built:            Wed Jan 22 13:41:17 2025
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.7.25
+  GitCommit:        bcc810d6b9066471b0b6fa75f557a15a1cbf31bb
+ runc:
+  Version:          1.1.12
+  GitCommit:        v1.1.12-0-g51d5e946
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+[10433 ms] Start: Run: docker volume ls -q
+[10617 ms] Start: Run: docker ps -q -a --filter label=vsch.local.folder=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI --filter label=vsch.quality=stable
+[10807 ms] Start: Run: docker ps -q -a --filter label=devcontainer.local_folder=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI --filter label=devcontainer.config_file=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI\.devcontainer\devcontainer.json
+[10991 ms] Start: Run: docker ps -q -a --filter label=devcontainer.local_folder=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI
+[11162 ms] Start: Run: docker ps -q -a --filter label=devcontainer.local_folder=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI
+[11334 ms] Running Dev Containers CLI:   up --user-data-folder c:\Users\naved\AppData\Roaming\Code\User\globalStorage\ms-vscode-remote.remote-containers\data --container-session-data-folder /tmp/devcontainers-d471d125-7a9d-43fb-851a-d77c302db3141740041615231 --workspace-folder c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI --workspace-mount-consistency cached --gpu-availability detect --id-label devcontainer.local_folder=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI --id-label devcontainer.config_file=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI\.devcontainer\devcontainer.json --log-level debug --log-format json --config c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI\.devcontainer\devcontainer.json --default-user-env-probe loginInteractiveShell --mount type=volume,source=vscode,target=/vscode,external=true --mount type=bind,source=\\wsl.localhost\Ubuntu-22.04\mnt\wslg\runtime-dir\wayland-0,target=/tmp/vscode-wayland-7cc50786-1bf7-4873-b75a-66ba2f6fc40a.sock --skip-post-create --update-remote-user-uid-default on --mount-workspace-git-root --terminal-columns 172 --terminal-rows 18 --include-configuration --include-merged-configuration
+[11340 ms] ProxyResolver#loadSystemCertificates count
+[11342 ms] ProxyResolver#loadSystemCertificates count filtered
+[11342 ms] Start: Run: C:\Users\naved\AppData\Local\Programs\Microsoft VS Code\Code.exe c:\Users\naved\.vscode\extensions\ms-vscode-remote.remote-containers-0.397.0\dist\spec-node\devContainersSpecCLI.js up --user-data-folder c:\Users\naved\AppData\Roaming\Code\User\globalStorage\ms-vscode-remote.remote-containers\data --container-session-data-folder /tmp/devcontainers-d471d125-7a9d-43fb-851a-d77c302db3141740041615231 --workspace-folder c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI --workspace-mount-consistency cached --gpu-availability detect --id-label devcontainer.local_folder=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI --id-label devcontainer.config_file=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI\.devcontainer\devcontainer.json --log-level debug --log-format json --config c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI\.devcontainer\devcontainer.json --default-user-env-probe loginInteractiveShell --mount type=volume,source=vscode,target=/vscode,external=true --mount type=bind,source=\\wsl.localhost\Ubuntu-22.04\mnt\wslg\runtime-dir\wayland-0,target=/tmp/vscode-wayland-7cc50786-1bf7-4873-b75a-66ba2f6fc40a.sock --skip-post-create --update-remote-user-uid-default on --mount-workspace-git-root --terminal-columns 172 --terminal-rows 18 --include-configuration --include-merged-configuration
+[11525 ms] @devcontainers/cli 0.73.0. Node.js v20.18.1. win32 10.0.26100 x64.
+[11525 ms] Start: Run: docker buildx version
+[12017 ms] github.com/docker/buildx v0.20.1-desktop.2 aaf7c2bc7f9ec3afee1cec77d671845a4b57a0c8
+[12017 ms] 
+[12017 ms] Start: Run: docker -v
+[12124 ms] Start: Resolving Remote
+[12127 ms] Loading 49 extra certificates from C:\Users\naved\AppData\Local\Temp\vsch\certificates-e3c63084846e91b6006f52c9b6120aa395347879642be42da87c5de858ebc650.pem.
+[12254 ms] Start: Run: docker compose version --short
+[12448 ms] Docker Compose version: 2.32.4-desktop.1
+[12448 ms] Start: Run: docker compose -f c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI\.devcontainer\docker-compose.yml --profile * config
+[12806 ms] 
+[12806 ms] time="2025-02-20T13:53:48+05:00" level=warning msg="c:\\Users\\naved\\source\\repos\\My Projects\\DanaCoreApps\\CoreApps\\RecordManagementAppAPI\\.devcontainer\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+service "api" depends on undefined service "main-network": invalid compose project
+
+[12806 ms] Exit code 15
+[12806 ms] Error: Command failed: docker compose -f c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI\.devcontainer\docker-compose.yml --profile * config
+[12806 ms]     at Ga (c:\Users\naved\.vscode\extensions\ms-vscode-remote.remote-containers-0.397.0\dist\spec-node\devContainersSpecCLI.js:466:889)
+[12806 ms]     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[12806 ms]     at async htA (c:\Users\naved\.vscode\extensions\ms-vscode-remote.remote-containers-0.397.0\dist\spec-node\devContainersSpecCLI.js:413:3106)
+[12806 ms]     at async TtA (c:\Users\naved\.vscode\extensions\ms-vscode-remote.remote-containers-0.397.0\dist\spec-node\devContainersSpecCLI.js:485:4021)
+[12807 ms]     at async iB (c:\Users\naved\.vscode\extensions\ms-vscode-remote.remote-containers-0.397.0\dist\spec-node\devContainersSpecCLI.js:485:4963)
+[12807 ms]     at async wrA (c:\Users\naved\.vscode\extensions\ms-vscode-remote.remote-containers-0.397.0\dist\spec-node\devContainersSpecCLI.js:666:203)
+[12807 ms]     at async DrA (c:\Users\naved\.vscode\extensions\ms-vscode-remote.remote-containers-0.397.0\dist\spec-node\devContainersSpecCLI.js:665:14830)
+[12807 ms]     at async c:\Users\naved\.vscode\extensions\ms-vscode-remote.remote-containers-0.397.0\dist\spec-node\devContainersSpecCLI.js:485:1190
+[12815 ms] Exit code 1
+[12816 ms] Command failed: C:\Users\naved\AppData\Local\Programs\Microsoft VS Code\Code.exe c:\Users\naved\.vscode\extensions\ms-vscode-remote.remote-containers-0.397.0\dist\spec-node\devContainersSpecCLI.js up --user-data-folder c:\Users\naved\AppData\Roaming\Code\User\globalStorage\ms-vscode-remote.remote-containers\data --container-session-data-folder /tmp/devcontainers-d471d125-7a9d-43fb-851a-d77c302db3141740041615231 --workspace-folder c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI --workspace-mount-consistency cached --gpu-availability detect --id-label devcontainer.local_folder=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI --id-label devcontainer.config_file=c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI\.devcontainer\devcontainer.json --log-level debug --log-format json --config c:\Users\naved\source\repos\My Projects\DanaCoreApps\CoreApps\RecordManagementAppAPI\.devcontainer\devcontainer.json --default-user-env-probe loginInteractiveShell --mount type=volume,source=vscode,target=/vscode,external=true --mount type=bind,source=\\wsl.localhost\Ubuntu-22.04\mnt\wslg\runtime-dir\wayland-0,target=/tmp/vscode-wayland-7cc50786-1bf7-4873-b75a-66ba2f6fc40a.sock --skip-post-create --update-remote-user-uid-default on --mount-workspace-git-root --terminal-columns 172 --terminal-rows 18 --include-configuration --include-merged-configuration
+[12816 ms] Exit code 1

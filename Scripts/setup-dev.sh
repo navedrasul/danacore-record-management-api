@@ -17,20 +17,4 @@ if ! command -v kubectl &> /dev/null; then
     sudo mv kubectl /usr/local/bin/
 fi
 
-# Setup minikube if not running
-if ! command -v minikube &> /dev/null; then
-    curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-    sudo install minikube-linux-amd64 /usr/local/bin/minikube
-    rm minikube-linux-amd64
-    minikube start
-fi
-
-# Apply Kubernetes configurations
-echo "Applying Kubernetes configurations..."
-kubectl apply -f k8s/config/record-mgmt-config.yaml
-kubectl apply -f k8s/secrets/db-secrets.yaml
-kubectl apply -f k8s/storage/
-kubectl apply -f k8s/deployments/
-kubectl apply -f k8s/services/
-
 echo "Development environment setup complete!"

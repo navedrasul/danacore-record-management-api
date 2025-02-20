@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   api:
     build: 
@@ -8,7 +6,15 @@ services:
     volumes:
       - ../:/workspace:cached
     command: sleep infinity
-    network_mode: service:main-network
+    networks:
+      - main-network
+    depends_on:
+      - customer-db
+      - employee-db
+      - inventory-db
+      - audit-db
+      - aggregated-db
+      - redis
 
   customer-db:
     image: postgres:16
@@ -19,6 +25,8 @@ services:
       POSTGRES_USER: customer_user
       POSTGRES_PASSWORD: customer_pass
       POSTGRES_DB: customer_db
+    networks:
+      - main-network
 
   employee-db:
     image: postgres:16
@@ -29,6 +37,8 @@ services:
       POSTGRES_USER: employee_user
       POSTGRES_PASSWORD: employee_pass
       POSTGRES_DB: employee_db
+    networks:
+      - main-network
 
   inventory-db:
     image: postgres:16
@@ -39,6 +49,8 @@ services:
       POSTGRES_USER: inventory_user
       POSTGRES_PASSWORD: inventory_pass
       POSTGRES_DB: inventory_db
+    networks:
+      - main-network
 
   audit-db:
     image: postgres:16
@@ -49,6 +61,8 @@ services:
       POSTGRES_USER: audit_user
       POSTGRES_PASSWORD: audit_pass
       POSTGRES_DB: audit_db
+    networks:
+      - main-network
 
   aggregated-db:
     image: postgres:16
@@ -59,11 +73,15 @@ services:
       POSTGRES_USER: aggregated_user
       POSTGRES_PASSWORD: aggregated_pass
       POSTGRES_DB: aggregated_db
+    networks:
+      - main-network
 
   redis:
     image: redis:latest
     ports:
       - "31012:6379"
+    networks:
+      - main-network
 
 networks:
   main-network:
