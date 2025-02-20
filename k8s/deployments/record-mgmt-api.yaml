@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: record-mgmt-api
+  labels:
+    app: record-mgmt-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: record-mgmt-api
+  template:
+    metadata:
+      labels:
+        app: record-mgmt-api
+    spec:
+      containers:
+      - name: record-mgmt-api
+        image: danacore/record-mgmt-api:latest
+        ports:
+        - containerPort: 31000
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "development"
+        - name: SERVER_PORT
+          value: "31000"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 31000
+          initialDelaySeconds: 30
+          periodSeconds: 10

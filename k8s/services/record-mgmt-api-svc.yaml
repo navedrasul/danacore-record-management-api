@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: record-mgmt-api-svc
+  labels:
+    app: record-mgmt-api
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 31000
+      targetPort: 31000
+      protocol: TCP
+      name: http
+  selector:
+    app: record-mgmt-api

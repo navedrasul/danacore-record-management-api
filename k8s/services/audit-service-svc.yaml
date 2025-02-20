@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: audit-service-svc
+  labels:
+    app: audit-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 31004
+      targetPort: 31004
+      protocol: TCP
+      name: http
+  selector:
+    app: audit-service

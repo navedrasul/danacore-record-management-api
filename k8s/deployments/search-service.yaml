@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-service
+  labels:
+    app: search-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: search-service
+  template:
+    metadata:
+      labels:
+        app: search-service
+    spec:
+      containers:
+      - name: search-service
+        image: danacore/search-service:latest
+        ports:
+        - containerPort: 31005
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+          requests:
+            cpu: "500m"
+            memory: "512Mi"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "development"
+        - name: SERVER_PORT
+          value: "31005"
+        - name: REDIS_HOST
+          value: "redis"
+        - name: REDIS_PORT
+          value: "31012"
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 31005
+          initialDelaySeconds: 20
+          periodSeconds: 10

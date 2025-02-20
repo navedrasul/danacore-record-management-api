@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-service-svc
+  labels:
+    app: employee-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 31002
+      targetPort: 31002
+      protocol: TCP
+      name: http
+  selector:
+    app: employee-service

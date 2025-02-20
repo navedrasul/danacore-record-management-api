@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-service
+  labels:
+    app: employee-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: employee-service
+  template:
+    metadata:
+      labels:
+        app: employee-service
+    spec:
+      containers:
+      - name: employee-service
+        image: danacore/employee-service:latest
+        ports:
+        - containerPort: 31002
+        resources:
+          limits:
+            cpu: "800m"
+            memory: "768Mi"
+          requests:
+            cpu: "400m"
+            memory: "384Mi"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "development"
+        - name: SERVER_PORT
+          value: "31002"
+        - name: DB_HOST
+          value: "employee-db"
+        - name: DB_PORT
+          value: "31008"

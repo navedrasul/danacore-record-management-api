@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aggregation-service
+  labels:
+    app: aggregation-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aggregation-service
+  template:
+    metadata:
+      labels:
+        app: aggregation-service
+    spec:
+      containers:
+      - name: aggregation-service
+        image: danacore/aggregation-service:latest
+        ports:
+        - containerPort: 31006
+        resources:
+          limits:
+            cpu: "800m"
+            memory: "1Gi"
+          requests:
+            cpu: "400m"
+            memory: "512Mi"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "development"
+        - name: SERVER_PORT
+          value: "31006"
+        - name: DB_HOST
+          value: "aggregated-db"
+        - name: DB_PORT
+          value: "31011"
+        - name: REDIS_HOST
+          value: "redis"
+        - name: REDIS_PORT
+          value: "31012"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 31006
+          initialDelaySeconds: 30
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /actuator/ready
+            port: 31006
+          initialDelaySeconds: 20
+          periodSeconds: 10

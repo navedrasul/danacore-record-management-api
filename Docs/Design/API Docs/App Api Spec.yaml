@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Record Management API
+  version: 1.0.0
+  description: API specification for the Record Management System
+
+servers:
+  - url: http://localhost:31000
+    description: Development server
+
+paths:
+  /api/v1/customers:
+    get:
+      summary: List customers
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: size
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          
+  /api/v1/employees:
+    get:
+      summary: List employees
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          
+  /api/v1/inventory:
+    get:
+      summary: List inventory items
+      responses:
+        '200':
+          description: Successful response
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []

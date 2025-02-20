@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/workspace:cached
+    command: sleep infinity
+    network_mode: service:main-network
+
+  customer-db:
+    image: postgres:16
+    restart: unless-stopped
+    ports:
+      - "31007:5432"
+    environment:
+      POSTGRES_USER: customer_user
+      POSTGRES_PASSWORD: customer_pass
+      POSTGRES_DB: customer_db
+
+  employee-db:
+    image: postgres:16
+    restart: unless-stopped
+    ports:
+      - "31008:5432"
+    environment:
+      POSTGRES_USER: employee_user
+      POSTGRES_PASSWORD: employee_pass
+      POSTGRES_DB: employee_db
+
+  inventory-db:
+    image: postgres:16
+    restart: unless-stopped
+    ports:
+      - "31009:5432"
+    environment:
+      POSTGRES_USER: inventory_user
+      POSTGRES_PASSWORD: inventory_pass
+      POSTGRES_DB: inventory_db
+
+  audit-db:
+    image: postgres:16
+    restart: unless-stopped
+    ports:
+      - "31010:5432"
+    environment:
+      POSTGRES_USER: audit_user
+      POSTGRES_PASSWORD: audit_pass
+      POSTGRES_DB: audit_db
+
+  aggregated-db:
+    image: postgres:16
+    restart: unless-stopped
+    ports:
+      - "31011:5432"
+    environment:
+      POSTGRES_USER: aggregated_user
+      POSTGRES_PASSWORD: aggregated_pass
+      POSTGRES_DB: aggregated_db
+
+  redis:
+    image: redis:latest
+    ports:
+      - "31012:6379"
+
+networks:
+  main-network:
+    driver: bridge

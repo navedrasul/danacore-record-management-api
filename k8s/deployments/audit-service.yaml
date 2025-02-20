@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: audit-service
+  labels:
+    app: audit-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: audit-service
+  template:
+    metadata:
+      labels:
+        app: audit-service
+    spec:
+      containers:
+      - name: audit-service
+        image: danacore/audit-service:latest
+        ports:
+        - containerPort: 31004
+        resources:
+          limits:
+            cpu: "600m"
+            memory: "512Mi"
+          requests:
+            cpu: "300m"
+            memory: "256Mi"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "development"
+        - name: SERVER_PORT
+          value: "31004"
+        - name: DB_HOST
+          value: "audit-db"
+        - name: DB_PORT
+          value: "31010"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 31004
+          initialDelaySeconds: 30
+          periodSeconds: 10

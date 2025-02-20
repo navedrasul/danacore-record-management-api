@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-service
+  labels:
+    app: customer-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: customer-service
+  template:
+    metadata:
+      labels:
+        app: customer-service
+    spec:
+      containers:
+      - name: customer-service
+        image: danacore/customer-service:latest
+        ports:
+        - containerPort: 31001
+        resources:
+          limits:
+            cpu: "800m"
+            memory: "768Mi"
+          requests:
+            cpu: "400m"
+            memory: "384Mi"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "development"
+        - name: SERVER_PORT
+          value: "31001"
+        - name: DB_HOST
+          value: "customer-db"
+        - name: DB_PORT
+          value: "31007"

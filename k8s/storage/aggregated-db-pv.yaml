@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: aggregated-db-pv
+  labels:
+    type: local
+    app: aggregated-db
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 25Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/aggregated-db"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: aggregated-db-pvc
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 25Gi
