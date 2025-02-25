@@ -108,15 +108,17 @@ spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 ```
 
+
 ### Step 4: Create Entity Classes
 
-Create the JPA entity classes based on your class diagrams. For example, a `Customer` entity:
+Now that you have configured the application.properties file, the next step is to create the JPA entity classes based on your class diagrams. Here is an example of a Customer entity:
 
 ```java
-package com.danacore.recordmanagement.model;
+package com.danacore.common.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.Date;
 
 @Data
 @Entity
@@ -129,8 +131,13 @@ public class Customer {
     private String name;
     private String email;
     private String region;
+    private Date createdAt;
+    private Date updatedAt;
 }
 ```
+
+You can create similar entity classes for other entities like Employee, Inventory, etc., based on your class diagrams.
+
 
 ### Step 5: Create Repository Layer
 

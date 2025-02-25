@@ -8,11 +8,11 @@
 		<version>3.4.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.danacore.recordmanagement</groupId>
-	<artifactId>RecordManagementAppAPIService</artifactId>
+	<groupId>com.danacore</groupId>
+	<artifactId>recordmanagement-common</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>RecordManagementAppAPIService</name>
-	<description>Record Management App API Service</description>
+	<name>RecordManagementCommon</name>
+	<description>Common Library for Shared Entities in Record Management App</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -32,25 +32,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -62,23 +44,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.danacore</groupId>
-			<artifactId>recordmanagement-common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -93,6 +59,8 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+			<!-- Remove or comment out the spring-boot-maven-plugin -->
+			<!--
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -105,7 +73,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			-->
 		</plugins>
 	</build>
-
 </project>
