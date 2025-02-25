@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  record-mgmt-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "31000:8080"
+    volumes:
+      - .:/app
+      - maven-repo:/root/.m2
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://customer-db:5432/record_mgmt_db
+      - SPRING_DATASOURCE_USERNAME=${DB_USER:-postgres}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-postgres}
+    depends_on:
+      - customer-db
+
+  customer-db:
+    image: postgres:16-alpine
+    ports:
+      - "31007:5432"
+    environment:
+      - POSTGRES_DB=record_mgmt_db
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+    volumes:
+      - ../../../data/customer-db:/var/lib/postgresql/data
+
+volumes:
+  maven-repo:

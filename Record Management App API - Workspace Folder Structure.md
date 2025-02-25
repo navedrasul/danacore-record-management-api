@@ -96,9 +96,8 @@
 │   │   │   ├── DanaCore - 10a Record Management App - Backend Setup.md
 │   │   │   ├── DanaCore - Record Management App API - 01 Dev Container Setup Plan.md
 │   │   │   ├── DanaCore - Record Management App API - 02 Dev Container Env Files Creation Plan.md
-│   │   │   ├── DanaCore - Record Management App API - 03b RMAAService Software Project Setup Step4+.md
-│   │   │   ├── DanaCore - Record Management App API - 03c RMAAService Software Project Setup Step4+ - Copy.md
-│   │   │   └── DanaCore - Record Management App API - 03 RMAAService Software Project Setup.md
+│   │   │   ├── DanaCore - Record Management App API - 03c RMAAService Software Project Setup.md
+│   │   │   └── DanaCore - Record Management App API - 04 RMAAService Dev Depolyment Setup.md
 │   │   ├── Record Management App - Class Diagram v0.1.dot
 │   │   ├── Record Management App - Detailed Component Diagram.dot
 │   │   └── Record Management App - Detailed Component Diagram.svg
@@ -191,6 +190,8 @@
 │   │   ├── EntityApiGateway
 │   │   ├── InventoryService
 │   │   ├── RecordManagementAppAPIService
+│   │   │   ├── docker-compose.dev.yml
+│   │   │   ├── Dockerfile.dev
 │   │   │   ├── HELP.md
 │   │   │   ├── mvnw
 │   │   │   ├── mvnw.cmd
@@ -219,6 +220,7 @@
 │   │   │   │   │   │                   ├── EmployeeService.java
 │   │   │   │   │   │                   └── InventoryService.java
 │   │   │   │   │   └── resources
+│   │   │   │   │       ├── application-dev.properties
 │   │   │   │   │       ├── application.properties
 │   │   │   │   │       ├── static
 │   │   │   │   │       └── templates
@@ -239,6 +241,7 @@
 │   │   │   │           └── application.properties
 │   │   │   └── target
 │   │   │       ├── classes
+│   │   │       │   ├── application-dev.properties
 │   │   │       │   ├── application.properties
 │   │   │       │   ├── com
 │   │   │       │   │   └── danacore
@@ -367,4 +370,4 @@
     ├── MockData
     └── UnitTests
 
-181 directories, 187 files
+181 directories, 190 files

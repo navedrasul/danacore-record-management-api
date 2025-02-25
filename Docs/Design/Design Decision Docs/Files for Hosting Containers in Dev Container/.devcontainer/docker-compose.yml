@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  dev:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+      - ~/.m2:/home/vscode/.m2:cached
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: sleep infinity
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock

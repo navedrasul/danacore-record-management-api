@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     maven \
+    docker.io \
+    docker-compose \
     postgresql-client \
     redis-tools \
     && rm -rf /var/lib/apt/lists/*
