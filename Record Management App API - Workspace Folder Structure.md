@@ -223,16 +223,20 @@
 │   │   │   │   │       ├── static
 │   │   │   │   │       └── templates
 │   │   │   │   └── test
-│   │   │   │       └── java
-│   │   │   │           └── com
-│   │   │   │               └── danacore
-│   │   │   │                   └── recordmanagement
-│   │   │   │                       ├── controller
-│   │   │   │                       │   ├── AuditTrailControllerTest.java
-│   │   │   │                       │   ├── CustomerControllerTest.java
-│   │   │   │                       │   ├── EmployeeControllerTest.java
-│   │   │   │                       │   └── InventoryControllerTest.java
-│   │   │   │                       └── RecordManagementAppApiServiceApplicationTests.java
+│   │   │   │       ├── java
+│   │   │   │       │   └── com
+│   │   │   │       │       └── danacore
+│   │   │   │       │           └── recordmanagement
+│   │   │   │       │               ├── config
+│   │   │   │       │               │   └── TestSecurityConfig.java
+│   │   │   │       │               ├── controller
+│   │   │   │       │               │   ├── AuditTrailControllerTest.java
+│   │   │   │       │               │   ├── CustomerControllerTest.java
+│   │   │   │       │               │   ├── EmployeeControllerTest.java
+│   │   │   │       │               │   └── InventoryControllerTest.java
+│   │   │   │       │               └── RecordManagementAppApiServiceApplicationTests.java
+│   │   │   │       └── resources
+│   │   │   │           └── application.properties
 │   │   │   └── target
 │   │   │       ├── classes
 │   │   │       │   ├── application.properties
@@ -283,9 +287,12 @@
 │   │   │       │   ├── TEST-com.danacore.recordmanagement.controller.InventoryControllerTest.xml
 │   │   │       │   └── TEST-com.danacore.recordmanagement.RecordManagementAppApiServiceApplicationTests.xml
 │   │   │       └── test-classes
+│   │   │           ├── application.properties
 │   │   │           └── com
 │   │   │               └── danacore
 │   │   │                   └── recordmanagement
+│   │   │                       ├── config
+│   │   │                       │   └── TestSecurityConfig.class
 │   │   │                       ├── controller
 │   │   │                       │   ├── AuditTrailControllerTest.class
 │   │   │                       │   ├── CustomerControllerTest.class
@@ -360,4 +367,4 @@
     ├── MockData
     └── UnitTests
 
-178 directories, 183 files
+181 directories, 187 files

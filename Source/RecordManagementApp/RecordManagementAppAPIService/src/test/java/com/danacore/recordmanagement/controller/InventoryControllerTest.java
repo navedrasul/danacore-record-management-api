@@ -3,15 +3,18 @@ package com.danacore.recordmanagement.controller;
 import com.danacore.recordmanagement.config.TestSecurityConfig;
 import com.danacore.recordmanagement.common.model.Inventory;
 import com.danacore.recordmanagement.service.InventoryService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -19,16 +22,22 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@ExtendWith(MockitoExtension.class)
 @WebMvcTest(InventoryController.class)
-@Import(TestSecurityConfig.class)
-public class InventoryControllerTest {
+@Import({TestSecurityConfig.class})
+class InventoryControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean  // Changed from @Mock
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @MockitoBean
     private InventoryService inventoryService;
 
     @InjectMocks
@@ -41,7 +50,7 @@ public class InventoryControllerTest {
     }
 
     @Test
-    public void getAllInventories() throws Exception {
+    void getAllInventories() throws Exception {
         Inventory inventory = new Inventory();
         inventory.setId(1L);
         inventory.setProductName("Product A");
@@ -50,7 +59,7 @@ public class InventoryControllerTest {
         given(inventoryService.getAllInventories()).willReturn(Arrays.asList(inventory));
 
         mockMvc.perform(get("/api/inventories")
-                .contentType(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].productName").value(inventory.getProductName()));
     }

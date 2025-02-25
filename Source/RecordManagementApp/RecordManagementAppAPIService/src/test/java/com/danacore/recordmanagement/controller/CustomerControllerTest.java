@@ -3,45 +3,42 @@ package com.danacore.recordmanagement.controller;
 import com.danacore.recordmanagement.common.model.Customer;
 import com.danacore.recordmanagement.config.TestSecurityConfig;
 import com.danacore.recordmanagement.service.CustomerService;
-import org.junit.jupiter.api.BeforeEach;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
 import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@ExtendWith(MockitoExtension.class)
 @WebMvcTest(CustomerController.class)
-@Import(TestSecurityConfig.class)
-public class CustomerControllerTest {
+@Import({TestSecurityConfig.class})
+class CustomerControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean  // Changed from @Mock
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @MockitoBean
     private CustomerService customerService;
 
-    @InjectMocks
-    private CustomerController customerController;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(customerController).build();
-    }
-
     @Test
-    public void getAllCustomers() throws Exception {
+    void getAllCustomers() throws Exception {
         Customer customer = new Customer();
         customer.setId(1L);
         customer.setName("John Doe");
@@ -50,7 +47,7 @@ public class CustomerControllerTest {
         given(customerService.getAllCustomers()).willReturn(Arrays.asList(customer));
 
         mockMvc.perform(get("/api/customers")
-                .contentType(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").value(customer.getName()));
     }

@@ -3,45 +3,42 @@ package com.danacore.recordmanagement.controller;
 import com.danacore.recordmanagement.common.model.AuditTrail;
 import com.danacore.recordmanagement.config.TestSecurityConfig;
 import com.danacore.recordmanagement.service.AuditTrailService;
-import org.junit.jupiter.api.BeforeEach;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@ExtendWith(MockitoExtension.class)
 @WebMvcTest(AuditTrailController.class)
-@Import(TestSecurityConfig.class)
-public class AuditTrailControllerTest {
+@Import({TestSecurityConfig.class})
+class AuditTrailControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean  // Changed from @Mock
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @MockitoBean
     private AuditTrailService auditTrailService;
 
-    @InjectMocks
-    private AuditTrailController auditTrailController;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(auditTrailController).build();
-    }
-
     @Test
-    public void getAllAuditTrails() throws Exception {
+    void getAllAuditTrails() throws Exception {
         AuditTrail auditTrail = new AuditTrail();
         auditTrail.setId(1L);
         auditTrail.setEntityId(1L);
@@ -50,10 +47,10 @@ public class AuditTrailControllerTest {
         given(auditTrailService.getAllAuditTrails()).willReturn(Arrays.asList(auditTrail));
 
         mockMvc.perform(get("/api/audit-trails")
-                .contentType(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].entityType").value(auditTrail.getEntityType()));
     }
 
-    // ... Similar tests for getAuditTrailById, createAuditTrail, updateAuditTrail, deleteAuditTrail
+    // ...rest of test methods following the same pattern...
 }
