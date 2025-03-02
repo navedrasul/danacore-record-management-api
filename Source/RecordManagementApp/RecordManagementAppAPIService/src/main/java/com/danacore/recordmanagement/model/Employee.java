@@ -1,4 +1,4 @@
-package com.danacore.recordmanagement.common.model;
+package com.danacore.recordmanagement.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

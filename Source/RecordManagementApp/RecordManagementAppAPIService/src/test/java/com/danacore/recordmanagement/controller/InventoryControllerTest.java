@@ -1,7 +1,7 @@
 package com.danacore.recordmanagement.controller;
 
 import com.danacore.recordmanagement.config.TestSecurityConfig;
-import com.danacore.recordmanagement.common.model.Inventory;
+import com.danacore.recordmanagement.model.Inventory;
 import com.danacore.recordmanagement.service.InventoryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;

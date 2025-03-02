@@ -1,6 +1,6 @@
 package com.danacore.recordmanagement.service;
 
-import com.danacore.recordmanagement.common.model.Employee;
+import com.danacore.recordmanagement.model.Employee;
 import com.danacore.recordmanagement.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

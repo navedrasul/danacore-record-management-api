@@ -1,6 +1,6 @@
 package com.danacore.recordmanagement.controller;
 
-import com.danacore.recordmanagement.common.model.Customer;
+import com.danacore.recordmanagement.model.Customer;
 import com.danacore.recordmanagement.config.TestSecurityConfig;
 import com.danacore.recordmanagement.service.CustomerService;
 import com.fasterxml.jackson.databind.ObjectMapper;

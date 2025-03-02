@@ -1,6 +1,6 @@
 package com.danacore.recordmanagement.controller;
 
-import com.danacore.recordmanagement.common.model.AuditTrail;
+import com.danacore.recordmanagement.model.AuditTrail;
 import com.danacore.recordmanagement.config.TestSecurityConfig;
 import com.danacore.recordmanagement.service.AuditTrailService;
 import com.fasterxml.jackson.databind.ObjectMapper;

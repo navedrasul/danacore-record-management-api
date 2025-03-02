@@ -1,6 +1,6 @@
 package com.danacore.recordmanagement.service;
 
-import com.danacore.recordmanagement.common.model.AuditTrail;
+import com.danacore.recordmanagement.model.AuditTrail;
 import com.danacore.recordmanagement.repository.AuditTrailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

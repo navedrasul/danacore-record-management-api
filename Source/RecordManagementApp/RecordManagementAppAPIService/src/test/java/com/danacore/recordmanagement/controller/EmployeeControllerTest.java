@@ -1,6 +1,6 @@
 package com.danacore.recordmanagement.controller;
 
-import com.danacore.recordmanagement.common.model.Employee;
+import com.danacore.recordmanagement.model.Employee;
 import com.danacore.recordmanagement.config.TestSecurityConfig;
 import com.danacore.recordmanagement.service.EmployeeService;
 import com.fasterxml.jackson.databind.ObjectMapper;

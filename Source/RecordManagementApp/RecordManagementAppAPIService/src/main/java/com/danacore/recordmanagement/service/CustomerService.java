@@ -1,6 +1,6 @@
 package com.danacore.recordmanagement.service;
 
-import com.danacore.recordmanagement.common.model.Customer;
+import com.danacore.recordmanagement.model.Customer;
 import com.danacore.recordmanagement.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
