@@ -7,7 +7,7 @@ The **Record Management App** is a core module of DanaCore ERP, enabling CRUD op
 
 ### **Architecture Layers**  
 
-#### 1. **Frontend Layer**  
+#### 1. **Frontend Layer (UI)**  
 **Technology**: React  
 - Provides a dynamic and responsive UI for users to manage records.  
 - Role-based components for different user types (e.g., Admin, Manager, Employee).  
@@ -16,7 +16,7 @@ The **Record Management App** is a core module of DanaCore ERP, enabling CRUD op
   - Editable grids for quick inline updates.  
   - Form validation for record creation and updates.  
 
-#### 2. **Backend Layer**  
+#### 2. **Backend Layer (API)**  
 **Technology**: Spring Boot  
 - RESTful APIs to handle CRUD operations and business logic.  
 - Key modules:  

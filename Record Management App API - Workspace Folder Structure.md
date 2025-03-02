@@ -96,9 +96,10 @@
 │   │   │   ├── DanaCore - 10a Record Management App - Backend Setup.md
 │   │   │   ├── DanaCore - Record Management App API - 01 Dev Container Setup Plan.md
 │   │   │   ├── DanaCore - Record Management App API - 02 Dev Container Env Files Creation Plan.md
-│   │   │   ├── DanaCore - Record Management App API - 03b RMAAService Software Project Setup Step4+.md
-│   │   │   ├── DanaCore - Record Management App API - 03c RMAAService Software Project Setup Step4+ - Copy.md
-│   │   │   └── DanaCore - Record Management App API - 03 RMAAService Software Project Setup.md
+│   │   │   ├── DanaCore - Record Management App API - 03c RMAAService Software Project Setup.md
+│   │   │   ├── DanaCore - Record Management App API - 04 RMAAService Dev Depolyment Setup.md
+│   │   │   ├── DanaCore - Record Management App API - 05 App Architectural Recommendations.md
+│   │   │   └── DanaCore - Record Management App API - 06 Dev Container Env Files Creation Plan.md
 │   │   ├── Record Management App - Class Diagram v0.1.dot
 │   │   ├── Record Management App - Detailed Component Diagram.dot
 │   │   └── Record Management App - Detailed Component Diagram.svg
@@ -182,184 +183,144 @@
 │   │   ├── Inventory
 │   │   └── Sales
 │   ├── RecordManagementApp
-│   │   ├── AggregationService
-│   │   ├── AuditService
-│   │   ├── AuthenticationService
-│   │   ├── CustomerService
-│   │   ├── DataAggregationService
-│   │   ├── EmployeeService
-│   │   ├── EntityApiGateway
-│   │   ├── InventoryService
+│   │   ├── HELP.md
+│   │   ├── mvnw
+│   │   ├── mvnw.cmd
+│   │   ├── pom.xml
 │   │   ├── RecordManagementAppAPIService
-│   │   │   ├── HELP.md
-│   │   │   ├── mvnw
-│   │   │   ├── mvnw.cmd
-│   │   │   ├── pom.xml
-│   │   │   ├── Record Management App API Service - Folder Structure.md
-│   │   │   ├── src
-│   │   │   │   ├── main
-│   │   │   │   │   ├── java
-│   │   │   │   │   │   └── com
-│   │   │   │   │   │       └── danacore
-│   │   │   │   │   │           └── recordmanagement
-│   │   │   │   │   │               ├── controller
-│   │   │   │   │   │               │   ├── AuditTrailController.java
-│   │   │   │   │   │               │   ├── CustomerController.java
-│   │   │   │   │   │               │   ├── EmployeeController.java
-│   │   │   │   │   │               │   └── InventoryController.java
-│   │   │   │   │   │               ├── RecordManagementAppApiServiceApplication.java
-│   │   │   │   │   │               ├── repository
-│   │   │   │   │   │               │   ├── AuditTrailRepository.java
-│   │   │   │   │   │               │   ├── CustomerRepository.java
-│   │   │   │   │   │               │   ├── EmployeeRepository.java
-│   │   │   │   │   │               │   └── InventoryRepository.java
-│   │   │   │   │   │               └── service
-│   │   │   │   │   │                   ├── AuditTrailService.java
-│   │   │   │   │   │                   ├── CustomerService.java
-│   │   │   │   │   │                   ├── EmployeeService.java
-│   │   │   │   │   │                   └── InventoryService.java
-│   │   │   │   │   └── resources
-│   │   │   │   │       ├── application.properties
-│   │   │   │   │       ├── static
-│   │   │   │   │       └── templates
-│   │   │   │   └── test
-│   │   │   │       ├── java
-│   │   │   │       │   └── com
-│   │   │   │       │       └── danacore
-│   │   │   │       │           └── recordmanagement
-│   │   │   │       │               ├── config
-│   │   │   │       │               │   └── TestSecurityConfig.java
-│   │   │   │       │               ├── controller
-│   │   │   │       │               │   ├── AuditTrailControllerTest.java
-│   │   │   │       │               │   ├── CustomerControllerTest.java
-│   │   │   │       │               │   ├── EmployeeControllerTest.java
-│   │   │   │       │               │   └── InventoryControllerTest.java
-│   │   │   │       │               └── RecordManagementAppApiServiceApplicationTests.java
-│   │   │   │       └── resources
-│   │   │   │           └── application.properties
 │   │   │   └── target
 │   │   │       ├── classes
-│   │   │       │   ├── application.properties
-│   │   │       │   ├── com
-│   │   │       │   │   └── danacore
-│   │   │       │   │       └── recordmanagement
-│   │   │       │   │           ├── controller
-│   │   │       │   │           │   ├── AuditTrailController.class
-│   │   │       │   │           │   ├── CustomerController.class
-│   │   │       │   │           │   ├── EmployeeController.class
-│   │   │       │   │           │   └── InventoryController.class
-│   │   │       │   │           ├── RecordManagementAppApiServiceApplication.class
-│   │   │       │   │           ├── repository
-│   │   │       │   │           │   ├── AuditTrailRepository.class
-│   │   │       │   │           │   ├── CustomerRepository.class
-│   │   │       │   │           │   ├── EmployeeRepository.class
-│   │   │       │   │           │   └── InventoryRepository.class
-│   │   │       │   │           └── service
-│   │   │       │   │               ├── AuditTrailService.class
-│   │   │       │   │               ├── CustomerService.class
-│   │   │       │   │               ├── EmployeeService.class
-│   │   │       │   │               └── InventoryService.class
-│   │   │       │   ├── static
-│   │   │       │   └── templates
+│   │   │       │   └── com
+│   │   │       │       └── danacore
+│   │   │       │           └── recordmanagement
+│   │   │       │               ├── controller
+│   │   │       │               ├── model
+│   │   │       │               ├── repository
+│   │   │       │               └── service
 │   │   │       ├── generated-sources
 │   │   │       │   └── annotations
 │   │   │       ├── generated-test-sources
 │   │   │       │   └── test-annotations
-│   │   │       ├── maven-status
-│   │   │       │   └── maven-compiler-plugin
-│   │   │       │       ├── compile
-│   │   │       │       │   └── default-compile
-│   │   │       │       │       ├── createdFiles.lst
-│   │   │       │       │       └── inputFiles.lst
-│   │   │       │       └── testCompile
-│   │   │       │           └── default-testCompile
-│   │   │       │               ├── createdFiles.lst
-│   │   │       │               └── inputFiles.lst
-│   │   │       ├── surefire-reports
-│   │   │       │   ├── com.danacore.recordmanagement.controller.AuditTrailControllerTest.txt
-│   │   │       │   ├── com.danacore.recordmanagement.controller.CustomerControllerTest.txt
-│   │   │       │   ├── com.danacore.recordmanagement.controller.EmployeeControllerTest.txt
-│   │   │       │   ├── com.danacore.recordmanagement.controller.InventoryControllerTest.txt
-│   │   │       │   ├── com.danacore.recordmanagement.RecordManagementAppApiServiceApplicationTests.txt
-│   │   │       │   ├── TEST-com.danacore.recordmanagement.controller.AuditTrailControllerTest.xml
-│   │   │       │   ├── TEST-com.danacore.recordmanagement.controller.CustomerControllerTest.xml
-│   │   │       │   ├── TEST-com.danacore.recordmanagement.controller.EmployeeControllerTest.xml
-│   │   │       │   ├── TEST-com.danacore.recordmanagement.controller.InventoryControllerTest.xml
-│   │   │       │   └── TEST-com.danacore.recordmanagement.RecordManagementAppApiServiceApplicationTests.xml
 │   │   │       └── test-classes
-│   │   │           ├── application.properties
 │   │   │           └── com
 │   │   │               └── danacore
 │   │   │                   └── recordmanagement
 │   │   │                       ├── config
-│   │   │                       │   └── TestSecurityConfig.class
-│   │   │                       ├── controller
-│   │   │                       │   ├── AuditTrailControllerTest.class
-│   │   │                       │   ├── CustomerControllerTest.class
-│   │   │                       │   ├── EmployeeControllerTest.class
-│   │   │                       │   └── InventoryControllerTest.class
-│   │   │                       └── RecordManagementAppApiServiceApplicationTests.class
-│   │   ├── RecordManagementCommon
-│   │   │   ├── HELP.md
-│   │   │   ├── mvnw
-│   │   │   ├── mvnw.cmd
-│   │   │   ├── pom.xml
-│   │   │   ├── src
-│   │   │   │   ├── main
-│   │   │   │   │   ├── java
-│   │   │   │   │   │   └── com
-│   │   │   │   │   │       └── danacore
-│   │   │   │   │   │           └── recordmanagement
-│   │   │   │   │   │               └── common
-│   │   │   │   │   │                   └── model
-│   │   │   │   │   │                       ├── AuditTrail.java
-│   │   │   │   │   │                       ├── Customer.java
-│   │   │   │   │   │                       ├── Employee.java
-│   │   │   │   │   │                       └── Inventory.java
-│   │   │   │   │   └── resources
-│   │   │   │   │       └── application.properties
-│   │   │   │   └── test
-│   │   │   │       └── java
-│   │   │   │           └── com
-│   │   │   │               └── danacore
-│   │   │   │                   └── recordmanagement
-│   │   │   │                       └── common
-│   │   │   └── target
-│   │   │       ├── classes
-│   │   │       │   ├── application.properties
+│   │   │                       └── controller
+│   │   ├── Record Management App API Service - Folder Structure.md
+│   │   ├── src
+│   │   │   ├── main
+│   │   │   │   ├── java
+│   │   │   │   │   └── com
+│   │   │   │   │       └── danacore
+│   │   │   │   │           └── recordmanagement
+│   │   │   │   │               ├── controller
+│   │   │   │   │               │   ├── AuditTrailController.java
+│   │   │   │   │               │   ├── CustomerController.java
+│   │   │   │   │               │   ├── EmployeeController.java
+│   │   │   │   │               │   └── InventoryController.java
+│   │   │   │   │               ├── model
+│   │   │   │   │               │   ├── AuditTrail.java
+│   │   │   │   │               │   ├── Customer.java
+│   │   │   │   │               │   ├── Employee.java
+│   │   │   │   │               │   └── Inventory.java
+│   │   │   │   │               ├── RecordManagementAppApiServiceApplication.java
+│   │   │   │   │               ├── repository
+│   │   │   │   │               │   ├── AuditTrailRepository.java
+│   │   │   │   │               │   ├── CustomerRepository.java
+│   │   │   │   │               │   ├── EmployeeRepository.java
+│   │   │   │   │               │   └── InventoryRepository.java
+│   │   │   │   │               └── service
+│   │   │   │   │                   ├── AuditTrailService.java
+│   │   │   │   │                   ├── CustomerService.java
+│   │   │   │   │                   ├── EmployeeService.java
+│   │   │   │   │                   └── InventoryService.java
+│   │   │   │   └── resources
+│   │   │   │       ├── application.properties
+│   │   │   │       ├── static
+│   │   │   │       └── templates
+│   │   │   └── test
+│   │   │       ├── java
 │   │   │       │   └── com
 │   │   │       │       └── danacore
 │   │   │       │           └── recordmanagement
-│   │   │       │               └── common
-│   │   │       │                   └── model
-│   │   │       │                       ├── AuditTrail.class
-│   │   │       │                       ├── Customer.class
-│   │   │       │                       ├── Employee.class
-│   │   │       │                       └── Inventory.class
-│   │   │       ├── generated-sources
-│   │   │       │   └── annotations
-│   │   │       ├── generated-test-sources
-│   │   │       │   └── test-annotations
-│   │   │       ├── maven-archiver
-│   │   │       │   └── pom.properties
-│   │   │       ├── maven-status
-│   │   │       │   └── maven-compiler-plugin
-│   │   │       │       ├── compile
-│   │   │       │       │   └── default-compile
-│   │   │       │       │       ├── createdFiles.lst
-│   │   │       │       │       └── inputFiles.lst
-│   │   │       │       └── testCompile
-│   │   │       │           └── default-testCompile
-│   │   │       │               ├── createdFiles.lst
-│   │   │       │               └── inputFiles.lst
-│   │   │       ├── recordmanagement-common-0.0.1-SNAPSHOT.jar
-│   │   │       └── test-classes
-│   │   │           └── com
-│   │   │               └── danacore
-│   │   │                   └── recordmanagement
-│   │   │                       └── common
-│   │   ├── RecordService
-│   │   └── SearchService
+│   │   │       │               ├── config
+│   │   │       │               │   └── TestSecurityConfig.java
+│   │   │       │               ├── controller
+│   │   │       │               │   ├── AuditTrailControllerTest.java
+│   │   │       │               │   ├── CustomerControllerTest.java
+│   │   │       │               │   ├── EmployeeControllerTest.java
+│   │   │       │               │   └── InventoryControllerTest.java
+│   │   │       │               └── RecordManagementAppApiServiceApplicationTests.java
+│   │   │       └── resources
+│   │   │           └── application.properties
+│   │   └── target
+│   │       ├── classes
+│   │       │   ├── application.properties
+│   │       │   ├── com
+│   │       │   │   └── danacore
+│   │       │   │       └── recordmanagement
+│   │       │   │           ├── controller
+│   │       │   │           │   ├── AuditTrailController.class
+│   │       │   │           │   ├── CustomerController.class
+│   │       │   │           │   ├── EmployeeController.class
+│   │       │   │           │   └── InventoryController.class
+│   │       │   │           ├── model
+│   │       │   │           │   ├── AuditTrail.class
+│   │       │   │           │   ├── Customer.class
+│   │       │   │           │   ├── Employee.class
+│   │       │   │           │   └── Inventory.class
+│   │       │   │           ├── RecordManagementAppApiServiceApplication.class
+│   │       │   │           ├── repository
+│   │       │   │           │   ├── AuditTrailRepository.class
+│   │       │   │           │   ├── CustomerRepository.class
+│   │       │   │           │   ├── EmployeeRepository.class
+│   │       │   │           │   └── InventoryRepository.class
+│   │       │   │           └── service
+│   │       │   │               ├── AuditTrailService.class
+│   │       │   │               ├── CustomerService.class
+│   │       │   │               ├── EmployeeService.class
+│   │       │   │               └── InventoryService.class
+│   │       │   ├── static
+│   │       │   └── templates
+│   │       ├── generated-sources
+│   │       │   └── annotations
+│   │       ├── generated-test-sources
+│   │       │   └── test-annotations
+│   │       ├── maven-status
+│   │       │   └── maven-compiler-plugin
+│   │       │       ├── compile
+│   │       │       │   └── default-compile
+│   │       │       │       ├── createdFiles.lst
+│   │       │       │       └── inputFiles.lst
+│   │       │       └── testCompile
+│   │       │           └── default-testCompile
+│   │       │               ├── createdFiles.lst
+│   │       │               └── inputFiles.lst
+│   │       ├── surefire-reports
+│   │       │   ├── com.danacore.recordmanagement.controller.AuditTrailControllerTest.txt
+│   │       │   ├── com.danacore.recordmanagement.controller.CustomerControllerTest.txt
+│   │       │   ├── com.danacore.recordmanagement.controller.EmployeeControllerTest.txt
+│   │       │   ├── com.danacore.recordmanagement.controller.InventoryControllerTest.txt
+│   │       │   ├── com.danacore.recordmanagement.RecordManagementAppApiServiceApplicationTests.txt
+│   │       │   ├── TEST-com.danacore.recordmanagement.controller.AuditTrailControllerTest.xml
+│   │       │   ├── TEST-com.danacore.recordmanagement.controller.CustomerControllerTest.xml
+│   │       │   ├── TEST-com.danacore.recordmanagement.controller.EmployeeControllerTest.xml
+│   │       │   ├── TEST-com.danacore.recordmanagement.controller.InventoryControllerTest.xml
+│   │       │   └── TEST-com.danacore.recordmanagement.RecordManagementAppApiServiceApplicationTests.xml
+│   │       └── test-classes
+│   │           ├── application.properties
+│   │           └── com
+│   │               └── danacore
+│   │                   └── recordmanagement
+│   │                       ├── config
+│   │                       │   └── TestSecurityConfig.class
+│   │                       ├── controller
+│   │                       │   ├── AuditTrailControllerTest.class
+│   │                       │   ├── CustomerControllerTest.class
+│   │                       │   ├── EmployeeControllerTest.class
+│   │                       │   └── InventoryControllerTest.class
+│   │                       └── RecordManagementAppApiServiceApplicationTests.class
 │   └── Record Management App API - Source Folder Structure.md
 └── Tests
     ├── IntegrationTests
@@ -367,4 +328,4 @@
     ├── MockData
     └── UnitTests
 
-181 directories, 187 files
+153 directories, 176 files
