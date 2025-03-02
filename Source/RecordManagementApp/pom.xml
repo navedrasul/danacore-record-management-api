@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.danacore.recordmanagement</groupId>
-	<artifactId>RecordManagementAppAPIService</artifactId>
+	<artifactId>RecordManagementAppAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>RecordManagementAppAPIService</name>
-	<description>Record Management App API Service</description>
+	<name>RecordManagementAppAPI</name>
+	<description>Record Management App API</description>
 	<url/>
 	<licenses>
 		<license/>
